@@ -4,5 +4,5 @@ return {
   require('plugins.lsp.configs'),
 
   -- LSP status indicator
-  { 'j-hui/fidget.nvim', config = true },
+  { 'j-hui/fidget.nvim', config = true, tag = 'legacy' },
 }
