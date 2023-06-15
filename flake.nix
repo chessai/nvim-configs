@@ -42,7 +42,7 @@
           code-minimap
 
           # language servers (+ associated tools)
-          rnix-lsp
+          nil # nix lsp
           texlab
           rust-analyzer
           lua-language-server
