@@ -62,6 +62,10 @@ autocmd({ 'BufRead', 'BufWinEnter', 'InsertLeave' }, {
   end,
   desc = 'Highlight trailing whitespace',
 })
+autocmd({ 'BufWritePre' }, {
+  pattern = { '*' },
+  command = [[%s/\s\+$//e]],
+})
 autocmd({ 'InsertEnter' }, {
   group = general_group,
   callback = function()
