@@ -43,12 +43,12 @@ return {
       map('n', '<Leader>lr', '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename')
       -- queries on a symbol
       map('n', '<Leader>lqgr', '<cmd>lua vim.lsp.buf.references()<CR>', 'references')
-      map('n', '<Leader>lqgd', '<cmd>lua vim.lsp.buf.definition()<CR>', 'goto definition')
-      map('n', '<Leader>lgD', '<cmd>lua vim.lsp.buf.declaration()<CR>', 'goto declaration')
+      map('n', '<Leader>gtdf', '<cmd>lua vim.lsp.buf.definition()<CR>', 'goto definition')
+      map('n', '<Leader>gtdc', '<cmd>lua vim.lsp.buf.declaration()<CR>', 'goto declaration')
       map('n', '<Leader>lqgt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', 'goto type definition')
       map('n', '<Leader>lqgi', '<cmd>lua vim.lsp.buf.implementation()<CR>', 'goto implementation')
-      map('n', '<Leader>lgr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', 'list references')
-      map('n', '<Leader>lgd', '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', 'list definitions')
+      map('n', '<Leader>lsr', '<cmd>lua require("telescope.builtin").lsp_references()<CR>', 'list references')
+      map('n', '<Leader>lsd', '<cmd>lua require("telescope.builtin").lsp_definitions()<CR>', 'list definitions')
       map('n', '<Leader>lgt', '<cmd>lua require("telescope.builtin").lsp_type_definitions()<CR>',
         'list type definitions')
       map('n', '<Leader>lgi', '<cmd>lua require("telescope.builtin").lsp_implementations()<CR>', 'list implementations')
@@ -60,7 +60,7 @@ return {
       map('n', '<Leader>ldf', '<cmd>lua vim.lsp.buf.format()<CR>', 'format buffer')
       map('n', '<Leader>ltf', function() lsp_format.toggle({ args = "" }) end, 'toggle format on save')
       -- workspace
-      map('n', '<Leader>lqws', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'query workspace symbols')
+      map('n', '<Leader>grep', '<cmd>lua vim.lsp.buf.workspace_symbol()<CR>', 'query workspace symbols')
       map('n', '<Leader>lws', '<cmd>lua require("telescope.builtin").lsp_dynamic_workspace_symbols()<CR>',
         'query workspace symbols')
       map('n', '<Leader>lwfl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',
@@ -127,6 +127,8 @@ return {
 
     local server_configs = {
       hls = {
+        cmd = { 'haskell-language-server', '--lsp' },
+        filetypes = { 'haskell', 'lhaskell', 'cabal' },
         root_dir = function(fname)
           local patterns = {
             'hie.yaml',
@@ -138,7 +140,28 @@ return {
           }
           return lspconfig.util.root_pattern(unpack(patterns))(fname) or '.'
         end,
-        settings = {},
+        settings = {
+          --haskell = {
+          --  -- formattingProvider = nil,
+          --  plugin = {
+          --    -- wingman
+          --    tactics = {
+          --      config = {
+          --      },
+          --    },
+          --    eval = {
+          --      config = {
+          --        exception = true,
+          --      },
+          --    },
+          --    rename = {
+          --      config = {
+          --        diff = true,
+          --      },
+          --    },
+          --  },
+          --},
+        },
       },
       rust_analyzer = {
         settings = {
